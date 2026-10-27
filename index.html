@@ -1,93 +1,585 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0b0c">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a08">
   <meta name="description" content="Welcome to the personal website of Rafsan Ahmed. Explore gaming, music, anime and more.">
-  <title>Home | Rafsan Ahmed</title>
+  <title>Rafsan Ahmed | Personal Website</title>
+
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #080a08;
+      --panel: #111411;
+      --accent: #c7ff5e;
+      --text: #f4f5f0;
+      --muted: #999e96;
+      --border: rgba(255,255,255,.10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .site-header,
+    main,
+    .site-footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-header {
+      min-height: 76px;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,10,8,.78);
+      backdrop-filter: blur(14px);
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 850;
+      text-decoration: none;
+      letter-spacing: -2px;
+    }
+
+    .logo span,
+    .accent {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 13px;
+      color: var(--muted);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 20px;
+    }
+
+    .hero {
+      min-height: 78vh;
+      padding: 100px 8% 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      margin: 18px 0;
+      font-size: clamp(48px, 9vw, 100px);
+      line-height: .99;
+      letter-spacing: -5px;
+      font-weight: 850;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-description {
+      max-width: 540px;
+      line-height: 1.8;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      transition: transform .2s, background .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button-primary {
+      background: var(--accent);
+      color: #111;
+      border-color: var(--accent);
+    }
+
+    .button-secondary {
+      background: rgba(255,255,255,.04);
+    }
+
+    .social-section,
+    .explore-section {
+      padding: 45px 8% 75px;
+    }
+
+    .section-label {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .social-links a {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 21px;
+      text-decoration: none;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(255,255,255,.035);
+      transition: .25s ease;
+    }
+
+    .social-links a:hover {
+      color: #080a08;
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    .explore-section h2 {
+      font-size: clamp(30px, 5vw, 48px);
+      letter-spacing: -2px;
+      margin: 12px 0 30px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      display: block;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.025);
+      text-decoration: none;
+      transition: .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(199,255,94,.5);
+      background: rgba(199,255,94,.045);
+    }
+
+    .card i {
+      font-size: 25px;
+      color: var(--accent);
+    }
+
+    .card h3 {
+      margin: 18px 0 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .site-footer {
+      padding: 26px 8%;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .reveal {
+      animation: appear .9s ease both;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .site-header {
+        padding: 16px 6%;
+        flex-wrap: wrap;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-basis: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        width: 100%;
+        padding: 12px 0;
+      }
+
+      .hero {
+        min-height: 70vh;
+        padding: 75px 7% 55px;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .social-section,
+      .explore-section {
+        padding: 35px 7% 55px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .site-footer {
+        padding: 24px 7%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <nav class="container nav" aria-label="Main navigation">
-    <a class="logo" href="index.html">RAFSAN<span>.</span></a>
-    <button class="menu-toggle" aria-expanded="false" aria-label="Toggle navigation">Menu ☰</button>
-    <div class="nav-links">
-      <a class="active" href="index.html">Home</a>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="logo" href="index.html">RA<span>.</span></a>
+
+    <button class="menu-toggle" aria-label="Toggle navigation"
+      aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="nav-links" id="navigation">
+      <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="gaming.html">Gaming</a>
       <a href="music.html">Music</a>
       <a href="anime.html">Anime</a>
       <a href="contact.html">Contact</a>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>
 
-<main>
-  <section class="container hero">
-    <p class="eyebrow reveal">Welcome to my corner of the internet</p>
-    <h1 class="reveal">Hey, I'm<br><span class="highlight">Rafsan Ahmed.</span></h1>
-    <p class="lead reveal">A personal space for my interests, digital adventures, favourite sounds and anime worlds. Simple by design. Personal by nature.</p>
-    <div class="actions reveal">
-      <a class="btn btn-primary" href="about.html">Discover my world ↗</a>
-      <a class="btn btn-secondary" href="contact.html">Get in touch</a>
-    </div>
-  </section>
+  <main>
+    <section class="hero">
+      <p class="eyebrow reveal">WELCOME TO MY WORLD</p>
 
-  <section class="container section">
-    <div class="section-heading reveal">
-      <p class="eyebrow">Explore</p>
-      <h2>A little bit of everything.</h2>
-      <p>The things that make my world interesting.</p>
-    </div>
-    <div class="grid">
-      <a class="card reveal" href="about.html">
-        <div class="card-icon">✳</div>
-        <h3>About Me</h3>
-        <p>A little introduction and a glimpse into my world.</p>
-        <span class="highlight">Get to know me ↗</span>
-      </a>
-      <a class="card reveal" href="gaming.html">
-        <div class="card-icon">⌁</div>
-        <h3>Gaming</h3>
-        <p>Competitive matches, favourite games and gaming life.</p>
-        <span class="highlight">Enter the lobby ↗</span>
-      </a>
-      <a class="card reveal" href="music.html">
-        <div class="card-icon">♫</div>
-        <h3>Music</h3>
-        <p>The sounds, artists and moods always on repeat.</p>
-        <span class="highlight">Press play ↗</span>
-      </a>
-      <a class="card reveal" href="anime.html">
-        <div class="card-icon">✦</div>
-        <h3>Anime</h3>
-        <p>Stories, characters and fictional worlds worth exploring.</p>
-        <span class="highlight">Explore worlds ↗</span>
-      </a>
-      <a class="card reveal" href="contact.html">
-        <div class="card-icon">↗</div>
-        <h3>Contact</h3>
-        <p>Have something to say? Find the contact page here.</p>
-        <span class="highlight">Say hello ↗</span>
-      </a>
-      <div class="card reveal">
-        <div class="card-icon">◌</div>
-        <h3>My philosophy</h3>
-        <p>Keep learning, stay curious and build things that feel like you.</p>
-        <span class="pill">Always evolving</span>
+      <h1 class="reveal">
+        Hey, I'm<br>
+        Rafsan <span>Ahmed.</span>
+      </h1>
+
+      <p class="hero-description reveal">
+        Gaming, music, anime and technology.
+        This is my little corner of the internet —
+        a place to explore what I love.
+      </p>
+
+      <div class="hero-actions reveal">
+        <a href="about.html" class="button button-primary">
+          Discover more <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <a href="contact.html" class="button button-secondary">
+          Get in touch
+        </a>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
 
-<footer>
-  <div class="container footer-inner">
-    <span>© <span data-year></span> Rafsan Ahmed</span>
-    <span>Made with care, kept minimal.</span>
-  </div>
-</footer>
+    <section class="social-section">
+      <p class="section-label">FOLLOW MY JOURNEY</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/1E9SKPKdgo/"
+          target="_blank" rel="noopener noreferrer"
+          aria-label="Facebook" title="Facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+
+        <a href="https://www.instagram.com/rafsan_ahmed.17"
+          target="_blank" rel="noopener noreferrer"
+          aria-label="Instagram" title="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="https://www.youtube.com/@rafsan_ahmed-g6v"
+          target="_blank" rel="noopener noreferrer"
+          aria-label="YouTube" title="YouTube">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+
+        <a href="https://www.tiktok.com/@rafsan_ahmedxd"
+          target="_blank" rel="noopener noreferrer"
+          aria-label="TikTok" title="TikTok">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+
+        <a href="https://github.com/rifattempmail-wq"
+          target="_blank" rel="noopener noreferrer"
+          aria-label="GitHub" title="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
+    </section>
+
+    <section class="explore-section">
+      <p class="section-label">A LITTLE BIT ABOUT ME</p>
+      <h2>Things I <span class="accent">enjoy.</span></h2>
+
+      <div class="cards">
+        <a class="card" href="gaming.html">
+          <i class="fa-solid fa-gamepad"></i>
+          <h3>Gaming</h3>
+          <p>Games, competitive moments and the things I enjoy playing.</p>
+        </a>
+
+        <a class="card" href="music.html">
+          <i class="fa-solid fa-headphones"></i>
+          <h3>Music</h3>
+          <p>My favorite sounds, artists and music discoveries.</p>
+        </a>
+
+        <a class="card" href="anime.html">
+          <i class="fa-solid fa-dragon"></i>
+          <h3>Anime</h3>
+          <p>Stories, characters and anime worlds worth exploring.</p>
+        </a>
+
+        <a class="card" href="about.html">
+          <i class="fa-solid fa-user"></i>
+          <h3>About me</h3>
+          <p>A little more about who I am and what interests me.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© <span id="year"></span> Rafsan Ahmed</span>
+    <span>Made with care <span class="accent">✳</span></span>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    // Mobile navigation
+    const menuButton = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.nav-links');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = navigation.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    // Current year
+    document.getElementById('year').textContent =
+      new Date().getFullYear();
+
+    // Animated particles
+    (() => {
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+
+      if (!ctx) return;
+
+      let width = 0;
+      let height = 0;
+      let particles = [];
+      let animationFrame;
+      const reduceMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        const count = Math.min(
+          90,
+          Math.max(25, Math.floor(width / 14))
+        );
+
+        particles = Array.from({ length: count }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 1.8 + 0.5,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          alpha: Math.random() * 0.5 + 0.15
+        }));
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+
+          if (!reduceMotion) {
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(199,255,94,${p.alpha})`;
+          ctx.fill();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const q = particles[j];
+            const dx = p.x - q.x;
+            const dy = p.y - q.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 105) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle =
+                `rgba(199,255,94,${0.10 * (1 - distance / 105)})`;
+              ctx.lineWidth = 0.7;
+              ctx.stroke();
+            }
+          }
+        }
+
+        if (!reduceMotion) {
+          animationFrame = requestAnimationFrame(draw);
+        }
+      }
+
+      resize();
+      draw();
+
+      window.addEventListener('resize', () => {
+        cancelAnimationFrame(animationFrame);
+        resize();
+        draw();
+      });
+    })();
+  </script>
 </body>
 </html>
