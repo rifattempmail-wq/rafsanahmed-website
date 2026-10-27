@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>Contact | Rafsan Ahmed</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="index.html">RA<span>.</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="gaming.html">Gaming</a>
+      <a href="music.html">Music</a>
+      <a href="anime.html">Anime</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+  </header>
+
+  <main class="page-container">
+    <section class="page-hero">
+      <p class="eyebrow">LET'S CONNECT</p>
+      <h1>Get in <span>touch.</span></h1>
+      <p>Have a question or want to say hello? Send me a message.</p>
+    </section>
+
+    <section class="contact-section">
+      <div class="contact-info">
+        <h2>Contact details</h2>
+        <p>You can reach me through email.</p>
+        <a href="mailto:rafsanahmedrifat484@gmail.com">
+          rafsanahmedrifat484@gmail.com
+        </a>
+      </div>
+
+      <form id="contact-form" class="contact-form">
+        <label for="name">Your name</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Enter your name"
+          required
+        >
+
+        <label for="email">Your email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Enter your email"
+          required
+        >
+
+        <label for="message">Your message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          placeholder="Write your message..."
+          required
+        ></textarea>
+
+        <button type="submit" class="btn btn-primary">
+          Send message ↗
+        </button>
+
+        <p id="form-status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Rafsan Ahmed. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const form = document.getElementById('contact-form');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const subject = encodeURIComponent('Website message from ' + name);
+      const body = encodeURIComponent(
+        'Name: ' + name +
+        '\nEmail: ' + email +
+        '\n\nMessage:\n' + message
+      );
+
+      document.getElementById('form-status').textContent =
+        'Opening your email app...';
+
+      window.location.href =
+        'mailto:rafsanahmedrifat484@gmail.com?subject=' +
+        subject + '&body=' + body;
+    });
+  </script>
+
+</body>
+</html>
